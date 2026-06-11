@@ -58,6 +58,26 @@ async def index(request):
             width: 100vw;
             overflow: hidden;
           }
+
+          .download {
+            position: fixed;
+            right: 2rem;
+            bottom: 2rem;
+            color: white;
+            display: flex;
+            gap: 6px;
+            font-size: 36px;
+            background: cornflowerblue;
+            padding: 15px 20px;
+            border-radius: 11px;
+            transition: all 0.2s ease-in;
+            text-decoration: none;
+
+            &:hover {
+              background: #98baf7;
+              color: #333;
+            }
+          }
         </style>
       </head>
       <body>
@@ -65,15 +85,32 @@ async def index(request):
 
         <model-viewer alt="Lego piece" ar shadow-intensity="1" camera-controls auto-rotate tone-mapping="linear" max-camera-orbit="auto auto auto" touch-action="pan-y"></model-viewer>
 
+        <a class="download" href="#">
+          <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <g class="download-outline">
+              <g fill="currentColor" fill-rule="evenodd" class="Vector" clip-rule="evenodd">
+                <path d="M7 22a5 5 0 0 1-5-5v-3a1 1 0 1 1 2 0v3a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-3a1 1 0 1 1 2 0v3a5 5 0 0 1-5 5z" />
+                <path d="M17.715 10.9a1 1 0 0 1-.016 1.415l-4.5 4.4a1 1 0 0 1-1.398 0l-4.5-4.4a1 1 0 1 1 1.398-1.43l2.801 2.739V5a1 1 0 1 1 2 0v8.624l2.8-2.739a1 1 0 0 1 1.415.016Z" />
+              </g>
+            </g>
+          </svg>
+          Download
+        </a>
+
         <script>
           function load() {
             const modelViewer = document.querySelector('model-viewer')
+            const downloadLink = document.querySelector('a.download')
             const url = new URL(window.location.href)
             const rows = (url.searchParams.get('rows') || 2)
             const columns = (url.searchParams.get('columns') || 4)
             const style = (url.searchParams.get('style') || 'flat')
 
             modelViewer.src = `/lego.glb?rows=${rows}&columns=${columns}&style=${style}`
+
+            downloadLink.download = `lego-${rows}x${columns}-${style}.stl`
+            downloadLink.href = `/lego.stl?rows=${rows}&columns=${columns}&style=${style}`
           }
 
           addEventListener("DOMContentLoaded", load)
