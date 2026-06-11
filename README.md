@@ -1,7 +1,9 @@
 Parametric Lego generator
 ---------------------
 
-The CAD model is defined using [cadquery](https://github.com/cadquery/cadquery) and served using [Microdot](https://github.com/miguelgrinberg/microdot). The 3D model is displayed in the browser using [`<model-viewer>`](https://modelviewer.dev/).
+The CAD model is defined using [cadquery](https://github.com/cadquery/cadquery) and served using [Microdot](https://github.com/miguelgrinberg/microdot).
+
+The 3D model is downloaded as a glTF binary file and displayed in the browser using [`<model-viewer>`](https://modelviewer.dev/).
 
 ## Screenshot
 
