@@ -3,6 +3,8 @@ Parametric Lego block
 
 Create a Lego block of **any size** and download it for **3D printing**.
 
+[Live Demo](https://lego-generator.up.railway.app)
+
 ## How it works
 
 The CAD model is generated dynamically using [cadquery](https://github.com/cadquery/cadquery) and served using a [Microdot](https://github.com/miguelgrinberg/microdot) web server.
