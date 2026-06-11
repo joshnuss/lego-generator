@@ -43,7 +43,17 @@ async def index(request):
       <head>
         <title>Lego Generator</title>
 
+        <link rel="preconnect" href="https://rsms.me/">
+        <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+
         <style>
+          :root {
+            font-family: Inter, sans-serif;
+            font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
+          }
+          @supports (font-variation-settings: normal) {
+            :root { font-family: InterVariable, sans-serif; }
+          }
           body {
             margin: 0;
             background: #222;
@@ -65,8 +75,8 @@ async def index(request):
             bottom: 2rem;
             color: white;
             display: flex;
-            gap: 6px;
-            font-size: 36px;
+            gap: 15px;
+            font-size: 28px;
             background: cornflowerblue;
             padding: 15px 20px;
             border-radius: 11px;
