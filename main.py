@@ -88,12 +88,29 @@ async def index(request):
               color: #333;
             }
           }
+
+          aside {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+          }
         </style>
       </head>
       <body>
         <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.3.1/model-viewer.min.js"></script>
 
-        <model-viewer alt="Lego piece" ar shadow-intensity="1" camera-controls auto-rotate tone-mapping="linear" max-camera-orbit="auto auto auto" touch-action="pan-y"></model-viewer>
+        <model-viewer alt="Lego piece" ar shadow-intensity="1" camera-controls auto-rotate tone-mapping="linear" shadow-intensity="1" shadow-softness="1"  max-camera-orbit="auto auto auto" touch-action="pan-y"></model-viewer>
+
+        <aside>
+          <form>
+            <input type="range" id="rows" min="1" max="20"/>
+            <input type="range" id="columns" min="1" max="20"/>
+            <select id='style'>
+              <option value="flat">Flat</option>
+              <option value="tall">Tall</option>
+            </select>
+          </form>
+        </aside>
 
         <a class="download" href="#">
           <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
@@ -109,18 +126,49 @@ async def index(request):
         </a>
 
         <script>
-          function load() {
-            const modelViewer = document.querySelector('model-viewer')
-            const downloadLink = document.querySelector('a.download')
-            const url = new URL(window.location.href)
-            const rows = (url.searchParams.get('rows') || 2)
-            const columns = (url.searchParams.get('columns') || 4)
-            const style = (url.searchParams.get('style') || 'flat')
+          let modelViewer, downloadLink, columnInput, rowInput, styleInput
+          let url, rows, columns
 
+          function load() {
+            modelViewer = document.querySelector('model-viewer')
+            downloadLink = document.querySelector('a.download')
+            rowInput = document.querySelector('#rows')
+            columnInput = document.querySelector('#columns')
+            styleInput = document.querySelector('#style')
+
+            url = new URL(window.location.href)
+            rows = (url.searchParams.get('rows') || 2)
+            columns = (url.searchParams.get('columns') || 4)
+            style = (url.searchParams.get('style') || 'flat')
+
+
+            rowInput.addEventListener('input', () => {
+              rows = rowInput.value
+              update()
+            })
+
+            columnInput.addEventListener('input', () => {
+              columns = columnInput.value
+              update()
+            })
+
+            styleInput.addEventListener('input', () => {
+              style = styleInput.value
+              update()
+            })
+
+            update()
+          }
+
+          function update() {
             modelViewer.src = `/lego.glb?rows=${rows}&columns=${columns}&style=${style}`
 
             downloadLink.download = `lego-${rows}x${columns}-${style}.stl`
             downloadLink.href = `/lego.stl?rows=${rows}&columns=${columns}&style=${style}`
+
+            const path = window.location.protocol + "//" + window.location.host + window.location.pathname + `?rows=${rows}&columns=${columns}&style=${style}`
+            window.history.pushState({ path }, '', path)
+
           }
 
           addEventListener("DOMContentLoaded", load)
