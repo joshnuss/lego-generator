@@ -9,7 +9,7 @@ The CAD model is generated dynamically using [cadquery](https://github.com/cadqu
 
 The CAD model is exported as a glTF binary file and displayed in the browser using [`<model-viewer>`](https://modelviewer.dev/).
 
-The user can click "Download STL" and send the `.stl` file to their 3D printer.
+The user can click "Download STL" and receives an `.stl` file suitable for 3D printing.
 
 ## Screenshot
 
