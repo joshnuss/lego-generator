@@ -1,9 +1,15 @@
 Parametric Lego generator
 ---------------------
 
-The CAD model is defined using [cadquery](https://github.com/cadquery/cadquery) and served using [Microdot](https://github.com/miguelgrinberg/microdot).
+Create a Lego block of **any size** and download it for **3D printing**.
 
-The 3D model is downloaded as a glTF binary file and displayed in the browser using [`<model-viewer>`](https://modelviewer.dev/).
+## How it works
+
+The CAD model is generated dynamically using [cadquery](https://github.com/cadquery/cadquery) and served using [Microdot](https://github.com/miguelgrinberg/microdot) web server.
+
+The CAD model is exported as a glTF binary file and displayed in the browser using [`<model-viewer>`](https://modelviewer.dev/).
+
+The user can click "Download STL" and send the `.stl` file to their 3D printer.
 
 ## Screenshot
 
