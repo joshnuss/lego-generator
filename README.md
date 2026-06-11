@@ -1,16 +1,18 @@
-Parametric CAD model to STL
+Parametric Lego generator
 ---------------------
 
-This is a web app that returns a dynamically generated STL file based on a parametric CAD model.
-
 The CAD model is defined using [cadquery](https://github.com/cadquery/cadquery) and served using [Microdot](https://github.com/miguelgrinberg/microdot).
+
+## Screenshot
+
+![Screenshot](/screenshot.png)
 
 ## Usage
 
 Download this repo:
 
 ```
-gh repo clone joshnuss/stl-generator
+gh repo clone joshnuss/lego-generator
 ```
 
 Install dependencies:
@@ -28,10 +30,10 @@ python main.py
 Visit the app in your browser:
 
 ```
-http://localhost:5000/example.stl?height=100&radius=20
+http://localhost:5000
 ```
 
-**Note**: The query params `height` and `radius` can be used to dynamically adjust the size of the cylinder.
+**Note**: The query params `rows`, `columns` and `style` can be used to dynamically adjust the dimensions of the Lego piece.
 
 ## License
 
