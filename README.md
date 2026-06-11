@@ -5,7 +5,7 @@ Create a Lego block of **any size** and download it for **3D printing**.
 
 ## How it works
 
-The CAD model is generated dynamically using [cadquery](https://github.com/cadquery/cadquery) and served using [Microdot](https://github.com/miguelgrinberg/microdot) web server.
+The CAD model is generated dynamically using [cadquery](https://github.com/cadquery/cadquery) and served using a [Microdot](https://github.com/miguelgrinberg/microdot) web server.
 
 The CAD model is exported as a glTF binary file and displayed in the browser using [`<model-viewer>`](https://modelviewer.dev/).
 
