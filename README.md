@@ -1,4 +1,4 @@
-Parametric Lego generator
+Parametric Lego block
 ---------------------
 
 Create a Lego block of **any size** and download it for **3D printing**.
