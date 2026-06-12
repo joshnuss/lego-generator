@@ -181,6 +181,10 @@ async def index(request):
             columns = (url.searchParams.get('columns') || 4)
             style = (url.searchParams.get('style') || 'flat')
 
+            rowInput.value = rows
+            columnInput.value = columns
+            styleInput.value = style
+
             modelViewer.addEventListener('progress', (event) => {
               if (event.detail.totalProgress >= 1) {
                 document.body.classList.remove('loading')
@@ -189,7 +193,6 @@ async def index(request):
 
               document.body.classList.add('loading')
             })
-
 
             rowInput.addEventListener('input', () => {
               rows = rowInput.value
