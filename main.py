@@ -213,7 +213,7 @@ async def index(request):
           Loading...
         </div>
 
-        <model-viewer alt="Lego piece" ar shadow-intensity="1" camera-controls auto-rotate tone-mapping="linear" shadow-intensity="1" shadow-softness="1"  max-camera-orbit="auto auto auto" touch-action="pan-y"></model-viewer>
+        <model-viewer alt="Lego piece" ar ar-scale="fixed" shadow-intensity="1" camera-controls auto-rotate tone-mapping="linear" shadow-intensity="1" shadow-softness="1"  max-camera-orbit="auto auto auto" touch-action="pan-y"></model-viewer>
 
         <div class="controls">
           <h2>Configure</h2>
