@@ -31,7 +31,7 @@ def lego(rows, columns, style="flat"):
             .workplane(invert=True) \
             .rarray(pitch, pitch, rows - 1, columns - 1, center = True) \
             .circle(CAP_DIAMETER/2) \
-            .circle(CAP_DIAMETER/2 - 0.3) \
+            .circle(CAP_DIAMETER/2 - 0.5) \
             .extrude(height/2)
     
     return tmp
