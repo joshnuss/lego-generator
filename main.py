@@ -177,8 +177,8 @@ async def index(request):
             styleInput = document.querySelector('#style')
 
             url = new URL(window.location.href)
-            rows = (url.searchParams.get('rows') || 2)
-            columns = (url.searchParams.get('columns') || 4)
+            rows = +(url.searchParams.get('rows') || 2)
+            columns = +(url.searchParams.get('columns') || 4)
             style = (url.searchParams.get('style') || 'flat')
 
             rowInput.value = rows
