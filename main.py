@@ -148,12 +148,40 @@ async def index(request):
             }
 
             input, select {
-              padding: 11px;
               font-size: 16px;
+              color: white;
+              background: transparent;
+              border: none;
+              padding: 11px;
+
+              &:focus {
+                border: none;
+                outline: none;
+              }
+            }
+
+            select {
+              margin-right: 10px;
+            }
+
+            label {
+              color: #ccc;
+              font-size: 14px;
+              padding: 0 10px;
+            }
+
+            .field {
+              display: grid;
+              grid-template-columns: auto 80px;
+              align-items: center;
+              gap: 10px;
               border-radius: 10px;
               border: solid 1px #444;
               background: #444;
-              color: white;
+
+              &:focus-within {
+                border-color: white;
+              }
             }
           }
         </style>
@@ -175,12 +203,24 @@ async def index(request):
 
         <div class="controls">
           <h2>Configure</h2>
-          <input type="number" id="rows" min="1" max="20"/>
-          <input type="number" id="columns" min="1" max="20"/>
-          <select id='style'>
-            <option value="flat">Flat</option>
-            <option value="tall">Tall</option>
-          </select>
+
+          <div class="field">
+            <label for="rows">Rows</label>
+            <input type="number" id="rows" name='rows' min="1" max="20"/>
+          </div>
+
+          <div class="field">
+            <label for="columns">Columns</label>
+            <input type="number" id="columns" name='columns' min="1" max="20"/>
+          </div>
+
+          <div class="field">
+            <label for="style">Style</label>
+            <select id='style'>
+              <option value="flat">Flat</option>
+              <option value="tall">Tall</option>
+            </select>
+          </div>
 
           <a class="download" href="#">
             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
