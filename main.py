@@ -109,6 +109,7 @@ async def index(request):
           h2 {
             margin: 0;
             color: #aaa;
+            margin-bottom: 1rem;
           }
 
           .download {
@@ -120,6 +121,7 @@ async def index(request):
             background: cornflowerblue;
             padding: 15px 20px;
             border-radius: 11px;
+            margin-top: 1rem;
             transition-property: background, color;
             transition-duration: 0.2s;
             transition-timing-function: ease-in;
