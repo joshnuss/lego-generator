@@ -59,9 +59,16 @@ async def index(request):
           @supports (font-variation-settings: normal) {
             :root { font-family: InterVariable, sans-serif; }
           }
+
+          * {
+            box-sizing: border-box;
+          }
+
           body {
             margin: 0;
             background: #222;
+            display: grid;
+            grid-template-rows: auto min-content;
           }
 
           /* This keeps child nodes hidden while the element loads */
@@ -69,7 +76,7 @@ async def index(request):
             display: none;
           }
           model-viewer {
-            height: 100vh;
+            height: 100%;
             width: 100vw;
             overflow: hidden;
 
@@ -79,31 +86,36 @@ async def index(request):
           }
 
           #loader {
+            --margin: 2rem;
             position: fixed;
             top: 0;
             left: 0;
             background: #ccc;
             border-radius: 9px;
-            margin: 2rem;
+            margin: var(--margin);
             color: #333;
             padding: 10px;
             font-size: 20px;
             gap: 10px;
             align-items: center;
             display: none;
+            width: calc(100vw - calc(var(--margin) * 2));
 
             .loading & {
               display: flex;
             }
           }
 
+          h2 {
+            margin: 0;
+            color: #aaa;
+          }
+
           .download {
-            position: fixed;
-            right: 2rem;
-            bottom: 2rem;
             color: white;
             display: flex;
             gap: 15px;
+            justify-content: center;
             font-size: 28px;
             background: cornflowerblue;
             padding: 15px 20px;
@@ -123,10 +135,26 @@ async def index(request):
             }
           }
 
-          aside {
-            position: fixed;
-            top: 1rem;
-            right: 1rem;
+          .controls {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            background: #fff3;
+            padding: 24px;
+            border-top: solid 1px #888a;
+
+            input {
+              text-align: right;
+            }
+
+            input, select {
+              padding: 11px;
+              font-size: 16px;
+              border-radius: 10px;
+              border: solid 1px #444;
+              background: #444;
+              color: white;
+            }
           }
         </style>
       </head>
@@ -145,29 +173,29 @@ async def index(request):
 
         <model-viewer alt="Lego piece" ar shadow-intensity="1" camera-controls auto-rotate tone-mapping="linear" shadow-intensity="1" shadow-softness="1"  max-camera-orbit="auto auto auto" touch-action="pan-y"></model-viewer>
 
-        <aside>
-          <form>
-            <input type="number" id="rows" min="1" max="20"/>
-            <input type="number" id="columns" min="1" max="20"/>
-            <select id='style'>
-              <option value="flat">Flat</option>
-              <option value="tall">Tall</option>
-            </select>
-          </form>
-        </aside>
+        <div class="controls">
+          <h2>Configure</h2>
+          <input type="number" id="rows" min="1" max="20"/>
+          <input type="number" id="columns" min="1" max="20"/>
+          <select id='style'>
+            <option value="flat">Flat</option>
+            <option value="tall">Tall</option>
+          </select>
 
-        <a class="download" href="#">
-          <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
-            <path d="M0 0h24v24H0z" fill="none" />
-            <g class="download-outline">
-              <g fill="currentColor" fill-rule="evenodd" class="Vector" clip-rule="evenodd">
-                <path d="M7 22a5 5 0 0 1-5-5v-3a1 1 0 1 1 2 0v3a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-3a1 1 0 1 1 2 0v3a5 5 0 0 1-5 5z" />
-                <path d="M17.715 10.9a1 1 0 0 1-.016 1.415l-4.5 4.4a1 1 0 0 1-1.398 0l-4.5-4.4a1 1 0 1 1 1.398-1.43l2.801 2.739V5a1 1 0 1 1 2 0v8.624l2.8-2.739a1 1 0 0 1 1.415.016Z" />
+          <a class="download" href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+              <path d="M0 0h24v24H0z" fill="none" />
+              <g class="download-outline">
+                <g fill="currentColor" fill-rule="evenodd" class="Vector" clip-rule="evenodd">
+                  <path d="M7 22a5 5 0 0 1-5-5v-3a1 1 0 1 1 2 0v3a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-3a1 1 0 1 1 2 0v3a5 5 0 0 1-5 5z" />
+                  <path d="M17.715 10.9a1 1 0 0 1-.016 1.415l-4.5 4.4a1 1 0 0 1-1.398 0l-4.5-4.4a1 1 0 1 1 1.398-1.43l2.801 2.739V5a1 1 0 1 1 2 0v8.624l2.8-2.739a1 1 0 0 1 1.415.016Z" />
+                </g>
               </g>
-            </g>
-          </svg>
-          Download
-        </a>
+            </svg>
+            Download
+          </a>
+
+        </div>
 
         <script>
           let modelViewer, loader, downloadLink, columnInput, rowInput, styleInput
