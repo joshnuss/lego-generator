@@ -41,6 +41,11 @@ async def index(request):
   html = """
     <html>
       <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="Create a Lego block of any size and download it for 3D printing.">
+        <meta name="keywords" content="Lego, 3D printing, STL, parametric">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
         <title>Lego Generator</title>
 
         <link rel="preconnect" href="https://rsms.me/">
