@@ -65,6 +65,7 @@ async def index(request):
           }
 
           body {
+            height: 100vh;
             margin: 0;
             background: #222;
             display: grid;
