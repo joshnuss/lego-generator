@@ -142,8 +142,8 @@ async def index(request):
 
         <aside>
           <form>
-            <input type="range" id="rows" min="1" max="20"/>
-            <input type="range" id="columns" min="1" max="20"/>
+            <input type="number" id="rows" min="1" max="20"/>
+            <input type="number" id="columns" min="1" max="20"/>
             <select id='style'>
               <option value="flat">Flat</option>
               <option value="tall">Tall</option>
@@ -220,7 +220,6 @@ async def index(request):
 
             const path = window.location.protocol + "//" + window.location.host + window.location.pathname + `?rows=${rows}&columns=${columns}&style=${style}`
             window.history.pushState({ path }, '', path)
-
           }
 
           addEventListener("DOMContentLoaded", load)
