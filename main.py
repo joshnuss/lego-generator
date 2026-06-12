@@ -45,6 +45,7 @@ async def index(request):
         <meta name="description" content="Create a Lego block of any size and download it for 3D printing.">
         <meta name="keywords" content="Lego, 3D printing, STL, parametric">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
         <title>Lego Generator</title>
 
@@ -340,5 +341,17 @@ async def glb(request):
     data = export.glb(assy)
 
     return data, {"content-type": "model/gltf-binary"}
+
+@app.route("/favicon.svg")
+async def favicon(request):
+    data = """
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 256 256">
+      <path d="M0 0h256v256H0z" fill="none" />
+      <path fill="cornflowerblue" d="m242.68 74.63l-46.83-23.41C190.69 41.09 176.78 34 160 34c-21.31 0-38 11.42-38 26a19.1 19.1 0 0 0 1.56 7.51l-22 11A51.5 51.5 0 0 0 80 74c-21.31 0-38 11.42-38 26a19.1 19.1 0 0 0 1.56 7.51l-30.24 15.12A6 6 0 0 0 10 128v64a6 6 0 0 0 3.32 5.37l64 32a6 6 0 0 0 5.36 0l160-80A6 6 0 0 0 246 144V80a6 6 0 0 0-3.32-5.37M80 153.29L29.42 128l21.77-10.88C58.1 122.59 68.36 126 80 126c21.31 0 38-11.42 38-26a20.4 20.4 0 0 0-5.43-13.58l18.62-9.3C138.1 82.59 148.36 86 160 86c18.63 0 33.74-8.73 37.23-20.67L226.58 80ZM160 46c15.32 0 26 7.38 26 14s-10.68 14-26 14s-26-7.38-26-14s10.68-14 26-14M80 86c15.32 0 26 7.38 26 14s-10.68 14-26 14s-26-7.38-26-14s10.68-14 26-14m-58 51.71l52 26v50.58l-52-26Zm64 76.58v-50.58l148-74v50.58Z" />
+    </svg>
+    """
+
+    return data, {"content-type": "image/svg+xml"}
+
 
 app.run(debug=True)
