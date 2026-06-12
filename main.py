@@ -69,7 +69,13 @@ async def index(request):
             background: #222;
             display: grid;
             grid-template-rows: auto min-content;
+
+            @media (orientation: landscape) {
+              grid-template-rows: none;
+              grid-template-columns: minmax(60vw, 3fr) 1fr;
+            }
           }
+
 
           /* This keeps child nodes hidden while the element loads */
           :not(:defined) > * {
@@ -77,7 +83,7 @@ async def index(request):
           }
           model-viewer {
             height: 100%;
-            width: 100vw;
+            width: 100%;
             overflow: hidden;
 
             .loading & {
@@ -100,6 +106,10 @@ async def index(request):
             align-items: center;
             display: none;
             width: calc(100vw - calc(var(--margin) * 2));
+
+            @media (orientation: landscape) {
+              width: auto;
+            }
 
             .loading & {
               display: flex;
